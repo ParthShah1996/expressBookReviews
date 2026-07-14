@@ -42,7 +42,16 @@ public_users.get('/author/:author',function (req, res) {
 // Get all books based on title
 public_users.get('/title/:title',function (req, res) {
   //Write your code here
-  return res.status(300).json({message: "Yet to be implemented"});
+  const title = req.params.title
+  const bookKeys = Object.keys(books);
+  const filteredBooks = [];
+  bookKeys.forEach(key => {
+    if (books[key].title == title) {
+        filteredBooks.push(books[key]);
+    }
+  });
+  res.send(filteredBooks)
+//   return res.status(300).json({message: "Yet to be implemented"});
 });
 
 //  Get book review
